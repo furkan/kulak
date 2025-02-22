@@ -5,17 +5,25 @@
     --text-color: #333;
     --header-bg: #f5f5f5;
     --key-border: #ccc;
+    --white-key-color: white;
     --black-key-color: #333;
     --white-key-active: #e0e0e0;
+    --black-key-active: #555;
+    --incorrect-key-color: #f99;
+    --correct-key-color: #9f9;
 }
 
 [data-theme="dark"] {
     --bg-color: #222;
-    --text-color: #fff;
+    --text-color: #ddd;
     --header-bg: #333;
     --key-border: #444;
+    --white-key-color: #ddd;
     --black-key-color: #111;
-    --white-key-active: #666;
+    --white-key-active: #bbb;
+    --black-key-active: #333;
+    --incorrect-key-color: #c44;
+    --correct-key-color: #4c4;
 }
 
 body {
@@ -23,7 +31,6 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background: var(--bg-color);
-    color: var(--text-color);
     display: flex;
     flex-direction: column;
 }
@@ -39,12 +46,13 @@ body {
     background: #f5f5f5;
     padding: 15px 20px;
     text-align: center;
+    background: var(--bg-color);
 }
 
 .header h1 {
     margin: 0;
     font-size: 24px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .content {
@@ -67,28 +75,11 @@ body {
     justify-content: center;
     margin: 2vh 0;
 }
+svg {
+    color: var(--white-key-color);
+}
 .hidden {
     display: none;
-}
-
-.play-button.playing {
-    opacity: 0.7;
-}
-
-.play-button.loading {
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(1);
-    }
 }
 
 .progress-dots {
@@ -101,7 +92,8 @@ body {
     height: 2vh;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: #ddd;
+    border: 1px solid #4caf50;
+    background: var(--white-key-color);
 }
 
 .dot.active {
@@ -127,27 +119,23 @@ body {
 
 .white-key {
     flex: 1;
-    background: white;
+    background: var(--white-key-color);
     border: 1px solid #ccc;
     height: 100%;
     z-index: 1;
 }
 
-.white-key.c4 {
-    background: #90ee90;
-}
-
 .white-key:active {
-    background: #e0e0e0;
+    background: var(--white-key-active);
 }
 .white-key.active {
-    background: #e0e0e0;
+    background: var(--white-key-active);
 }
 .black-key {
     position: absolute;
     width: var(--black-key-width);
     height: 66%;
-    background: #333;
+    background: var(--black-key-color);
     z-index: 2;
 }
 .black-key.cs {
@@ -166,11 +154,11 @@ body {
     left: calc(6 * var(--white-key-width) - var(--black-key-width) / 2);
 }
 .black-key:active {
-    background: #555;
+    background: var(--black-key-active);
 }
 .correct {
-    background-color: rgba(0, 200, 0, 0.5) !important;
+    background: var(--correct-key-color) !important;
 }
 .incorrect {
-    background-color: rgba(200, 0, 0, 0.5) !important;
+    background: var(--incorrect-key-color) !important;
 }
