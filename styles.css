@@ -1,0 +1,176 @@
+:root {
+    --white-key-width: 12.5%;
+    --black-key-width: 9%;
+    --bg-color: #fff;
+    --text-color: #333;
+    --header-bg: #f5f5f5;
+    --key-border: #ccc;
+    --black-key-color: #333;
+    --white-key-active: #e0e0e0;
+}
+
+[data-theme="dark"] {
+    --bg-color: #222;
+    --text-color: #fff;
+    --header-bg: #333;
+    --key-border: #444;
+    --black-key-color: #111;
+    --white-key-active: #666;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+}
+
+@media (hover: none) {
+    .white-key:active,
+    .black-key:active {
+        opacity: 0.7;
+    }
+}
+
+.header {
+    background: #f5f5f5;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.play-button {
+    height: 10vh;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #4caf50;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh 0;
+}
+.hidden {
+    display: none;
+}
+
+.play-button.playing {
+    opacity: 0.7;
+}
+
+.play-button.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.progress-dots {
+    display: flex;
+    gap: 15px;
+    margin: 1vh 0;
+}
+
+.dot {
+    height: 2vh;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #ddd;
+}
+
+.dot.active {
+    background: #4caf50;
+}
+
+.piano-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 640px;
+    margin-top: 20px;
+}
+
+.piano-row {
+    position: relative;
+    height: 28vh;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.white-key {
+    flex: 1;
+    background: white;
+    border: 1px solid #ccc;
+    height: 100%;
+    z-index: 1;
+}
+
+.white-key.c4 {
+    background: #90ee90;
+}
+
+.white-key:active {
+    background: #e0e0e0;
+}
+.white-key.active {
+    background: #e0e0e0;
+}
+.black-key {
+    position: absolute;
+    width: var(--black-key-width);
+    height: 66%;
+    background: #333;
+    z-index: 2;
+}
+.black-key.cs {
+    left: calc(var(--white-key-width) - var(--black-key-width) / 2);
+}
+.black-key.ds {
+    left: calc(2 * var(--white-key-width) - var(--black-key-width) / 2);
+}
+.black-key.fs {
+    left: calc(4 * var(--white-key-width) - var(--black-key-width) / 2);
+}
+.black-key.gs {
+    left: calc(5 * var(--white-key-width) - var(--black-key-width) / 2);
+}
+.black-key.as {
+    left: calc(6 * var(--white-key-width) - var(--black-key-width) / 2);
+}
+.black-key:active {
+    background: #555;
+}
+.correct {
+    background-color: rgba(0, 200, 0, 0.5) !important;
+}
+.incorrect {
+    background-color: rgba(200, 0, 0, 0.5) !important;
+}
